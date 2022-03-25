@@ -2,6 +2,6 @@
 #service httpd start
 
 cd /home/ec2-user/football-analytics-app/
-kill -INT 888
+
 
 

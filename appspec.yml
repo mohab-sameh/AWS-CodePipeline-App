@@ -11,13 +11,16 @@ files:
     destination: /football-analytics-app/
 hooks:
   BeforeInstall:
-    #- sudo pip install -r requirements.txt
     - location: scripts/install_dependencies
       timeout: 300
       runas: root
     - location: scripts/start_server
       timeout: 300
       runas: root
+  install:
+    commands:
+      - pip install -r requirements.txt
+      - pip install streamlit
   ApplicationStop:
     - location: scripts/stop_server
       timeout: 300

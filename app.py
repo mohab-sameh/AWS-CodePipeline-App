@@ -164,4 +164,4 @@ tour = st.selectbox('Select a tournament', comparison['tournament'].unique())
 comparison_t = comparison[comparison['tournament']==tour] 
 per = len(comparison_t)/len(comparison)
  
-st.write(f"{round(per*100,2)}% of matches between the 2 teams have been played as {tour} matches")
+#st.write(f"{round(per*100,2)}% of matches between the 2 teams have been played as {tour} matches")

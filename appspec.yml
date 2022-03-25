@@ -3,7 +3,11 @@ os: linux
 files:
   - source: /index.html
     destination: /var/www/html/
-  - source: /*
+  - source: /app.py
+    destination: home/ec2-user/football-analytics-app/
+  - source: /assets
+    destination: home/ec2-user/football-analytics-app/assets/
+  - source: /requirements.txt
     destination: home/ec2-user/football-analytics-app/
 hooks:
   BeforeInstall:

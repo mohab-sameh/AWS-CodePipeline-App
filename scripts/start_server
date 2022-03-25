@@ -1,4 +1,5 @@
 #!/bin/bash
 #service httpd start
 
-cd ~/football-analytics-app/
+cd ~
+cd ../../football-analytics-app/

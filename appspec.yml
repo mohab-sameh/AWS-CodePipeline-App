@@ -4,7 +4,7 @@ files:
   - source: /index.html
     destination: /var/www/html/
   - source: /app.py
-    destination: /
+    destination: /football-analytics-app
 hooks:
   BeforeInstall:
     - location: scripts/install_dependencies

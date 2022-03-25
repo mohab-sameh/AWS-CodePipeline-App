@@ -4,11 +4,11 @@ files:
   - source: /index.html
     destination: /var/www/html/
   - source: /app.py
-    destination: ~/football-analytics-app/
+    destination: /football-analytics-app/
   - source: /assets
-    destination: ~/football-analytics-app/assets/
+    destination: /football-analytics-app/assets/
   - source: /requirements.txt
-    destination: ~/football-analytics-app/
+    destination: /football-analytics-app/
 hooks:
   BeforeInstall:
     - location: scripts/install_dependencies

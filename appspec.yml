@@ -9,6 +9,8 @@ files:
     destination: home/ec2-user/football-analytics-app/assets/
   - source: /requirements.txt
     destination: home/ec2-user/football-analytics-app/
+  - source: /run_all.py
+    destination: home/ec2-user/football-analytics-app/
 hooks:
   BeforeInstall:
     - location: scripts/install_dependencies

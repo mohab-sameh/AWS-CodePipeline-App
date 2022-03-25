@@ -2,4 +2,4 @@
 #service httpd start
 
 cd /home/ec2-user/football-analytics-app/
-python3 -m streamlit run app.py
+python3 run_all.py

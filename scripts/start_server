@@ -2,4 +2,3 @@
 #service httpd start
 
 cd ~/football-analytics-app/
-#streamlit run app.py

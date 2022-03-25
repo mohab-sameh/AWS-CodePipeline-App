@@ -1,3 +1,8 @@
 #!/bin/bash
-service httpd start
+#service httpd start
 
+cd ~
+cd ..
+cd ..
+cd football-analytics-app/
+#streamlit run app.py

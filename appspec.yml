@@ -10,6 +10,10 @@ files:
   - source: /requirements.txt
     destination: /football-analytics-app/
 hooks:
+  install:
+    commands:
+      - pip install -r requirements.txt
+      - pip install streamlit
   BeforeInstall:
     - location: scripts/install_dependencies
       timeout: 300
@@ -17,10 +21,6 @@ hooks:
     - location: scripts/start_server
       timeout: 300
       runas: root
-  install:
-    commands:
-      - pip install -r requirements.txt
-      - pip install streamlit
   ApplicationStop:
     - location: scripts/stop_server
       timeout: 300

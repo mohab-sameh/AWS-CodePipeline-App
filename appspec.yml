@@ -6,7 +6,7 @@ files:
   - source: /app.py
     destination: /football-analytics-app
   - source: /assets
-    destination: /football-analytics-app/
+    destination: /football-analytics-app/assets/
 hooks:
   BeforeInstall:
     - location: scripts/install_dependencies

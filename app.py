@@ -6,11 +6,56 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+import s3fs
+
+
+st.title('International Football matches')
+
+
+class DBConnection:
+    @staticmethod
+    @st.cache(ttl=600, suppress_st_warning=True)
+    def get_file_from_bucket(file_path):
+        dfs3 = pd.read_csv(file_path)
+        return dfs3
+
+    @staticmethod
+    def fetchDB():
+        uploaded_file = None
+        fs = s3fs.S3FileSystem(anon=False)
+        buckets = fs.ls('/')
+        selected_bucket = st.selectbox('Select AWS S3 Bucket: ', buckets)
+
+        bucket_path = 's3://'+str(selected_bucket)+'/'
+        dataset_names = fs.ls(bucket_path)
+        dataset = st.selectbox('Select Dataset: ', dataset_names)
+
+        connect_btn = st.checkbox("Use selected Dataset file from Database")
+        if connect_btn:
+            file_path = 's3://'+str(dataset)
+            #file_path = 's3://football-datasets/results.csv'
+            uploaded_file = DBConnection.get_file_from_bucket(file_path)
+               
+        return uploaded_file
 
 
 
-st.title('Internationa Football matches')
-df = pd.read_csv("assets//datasets//international-football-results//results.csv")
+
+df = None
+
+prediction_type = st.selectbox('Select Imported Dataset or Live Packet Data Prediction', ['Imported Dataset', 'Connect to AWS S3 Database'])
+
+if prediction_type == 'Connect to AWS S3 Database':
+    df = DBConnection.fetchDB()
+
+else:
+    #uploaded_file = st.file_uploader("Choose a file")
+    df = pd.read_csv("assets//datasets//international-football-results//results.csv")
+
+if df is None:
+    st.stop()
+
+
 
 
 st.subheader('Comparing 2 teams')
@@ -110,6 +155,10 @@ fig6.update_layout(
                      stepmode="todate"),
                 dict(count=1,
                      label="1y",
+                     step="year",
+                     stepmode="backward"),
+                dict(count=10,
+                     label="10y",
                      step="year",
                      stepmode="backward"),
                 dict(step="all")

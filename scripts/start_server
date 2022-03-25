@@ -2,7 +2,6 @@
 #service httpd start
 
 cd /home/ec2-user/football-analytics-app/
-nohup python3 -m streamlit run app.py
 kill -INT 888
 
 

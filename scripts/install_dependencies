@@ -1,4 +1,4 @@
 #!/bin/bash
 yum install -y httpd
 cd ~/football-analytics-app/
-pip install -r requirements.txt
+pip install -r ~/football-analytics-app/requirements.txt

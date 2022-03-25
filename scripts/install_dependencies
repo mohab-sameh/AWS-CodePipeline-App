@@ -1,6 +1,6 @@
 #!/bin/bash
 yum install -y httpd
-pip3 install streamlit
+pip3 install streamlit==1.8.0
 pip3 install seaborn
 pip3 install pandas
 pip3 install plotly

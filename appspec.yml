@@ -7,8 +7,11 @@ files:
     destination: /football-analytics-app
   - source: /assets
     destination: /football-analytics-app/assets/
+  - source: /requirements.txt
+    destination: /football-analytics-app/
 hooks:
   BeforeInstall:
+    - sudo pip install -r requirements.txt
     - location: scripts/install_dependencies
       timeout: 300
       runas: root

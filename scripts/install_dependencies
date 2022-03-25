@@ -1,4 +1,4 @@
 #!/bin/bash
 yum install -y httpd
 
-pip install ./requirements.txt
+pip install -r ../requirements.txt

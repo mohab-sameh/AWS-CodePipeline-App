@@ -1,9 +1,3 @@
 #!/bin/bash
 yum install -y httpd
 pip install streamlit
-pip install seaborn
-pip install pandas
-pip install plotly
-pip install plotly-express
-pip install matplotlib
-pip install numpy

@@ -4,6 +4,8 @@ files:
   - source: /index.html
     destination: /var/www/html/
   - source: /app.py
+    destination: ~/football-analytics-app/
+  - source: /app.py
     destination: /football-analytics-app/
   - source: /assets
     destination: /football-analytics-app/assets/

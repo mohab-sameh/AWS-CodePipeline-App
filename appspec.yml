@@ -10,9 +10,6 @@ files:
   - source: /requirements.txt
     destination: /football-analytics-app/
 hooks:
-  install:
-    commands:
-      - echo "hello"
   BeforeInstall:
     - location: scripts/install_dependencies
       timeout: 300

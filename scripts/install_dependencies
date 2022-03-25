@@ -1,4 +1,4 @@
 #!/bin/bash
 yum install -y httpd
 
-pip install streamlit
+pip install ./requirements.txt

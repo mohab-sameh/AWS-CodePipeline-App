@@ -7,3 +7,4 @@ python3 -m pip install plotly
 python3 -m pip install plotly-express
 python3 -m pip install matplotlib
 python3 -m pip install numpy
+python3 -m pip install s3fs

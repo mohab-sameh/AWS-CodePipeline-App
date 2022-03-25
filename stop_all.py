@@ -17,15 +17,3 @@ if sys.platform == 'win32':
     signal.signal(signal.SIGBREAK, signal_handler)
 else:
     signal.signal(signal.SIGQUIT, signal_handler)
-
-
-
-
-processes = []
-process = subprocess.Popen(['streamlit', 'run', 'register.py', '--server.port', '8501'])
-processes.append(process)
-
-
-for process in processes:
-    #time.sleep(5)
-    process.wait()

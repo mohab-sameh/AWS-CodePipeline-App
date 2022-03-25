@@ -2,4 +2,5 @@
 #service httpd start
 
 cd ~
+mkdir football-analytics-app
 cd ../../football-analytics-app/

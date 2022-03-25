@@ -3,3 +3,4 @@ yum install -y httpd
 pip install streamlit
 pip install seaborn
 pip install pandas
+pip install plotly-express

@@ -17,9 +17,6 @@ hooks:
     - location: scripts/start_server
       timeout: 100
       runas: root
-    - location: scripts/run_all.py
-      timeout: 100
-      runas: root
   ApplicationStop:
     - location: scripts/stop_server
       timeout: 100

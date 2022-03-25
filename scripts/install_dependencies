@@ -1,4 +1,5 @@
 #!/bin/bash
 yum install -y httpd
-
-pip install -r /football-analytics-app/requirements.txt
+pip install streamlit
+pip install seaborn
+pip install pandas

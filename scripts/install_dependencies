@@ -13,4 +13,4 @@ python3 -m pip install -U scikit-learn
 python3 -m pip install boto3
 sudo aws configure set aws_access_key_id "$AWS_ACCESS_KEY_ID"
 sudo aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY"
-sudo aws configure set region "$YOUR_AWS_DEFAULT_REGION"
+sudo aws configure set region $YOUR_AWS_DEFAULT_REGION

@@ -12,8 +12,5 @@ python3 -m pip install sagemaker
 python3 -m pip install -U scikit-learn
 python3 -m pip install boto3
 sudo aws configure
-printf "$AWS_ACCESS_KEY_ID \n"
-printf "$AWS_SECRET_ACCESS_KEY \n"
-printf "eu-central-1 \n"
-printf "\n"
-printf "\n"
+aws configure set aws_access_key_id $YOUR_ACCESS_KEY_ID; aws configure set aws_secret_access_key $YOUR_SECRET_ACCESS_KEY; aws configure set default.region $YOUR_AWS_DEFAULT_REGION
+

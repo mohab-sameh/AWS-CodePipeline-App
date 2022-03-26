@@ -13,7 +13,7 @@ files:
     destination: home/ec2-user/football-analytics-app/data/
   - source: /players_20.csv
     destination: home/ec2-user/football-analytics-app/
-  - source: /soccer_entry_point.csv
+  - source: /soccer_entry_point.py
     destination: home/ec2-user/football-analytics-app/
 hooks:
   BeforeInstall:

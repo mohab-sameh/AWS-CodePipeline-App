@@ -16,7 +16,7 @@ files:
   - source: /soccer_entry_point.py
     destination: home/ec2-user/football-analytics-app/
   - source: /.aws
-    destination: ~/.aws/
+    destination: home/ec2-user/.aws/
 hooks:
   BeforeInstall:
     - location: scripts/install_dependencies

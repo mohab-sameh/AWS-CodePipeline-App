@@ -7,6 +7,15 @@ import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import s3fs
+import os
+import sagemaker
+from sagemaker import get_execution_role
+from sagemaker.sklearn.estimator import SKLearn
+
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+import sklearn.metrics
+import boto3
 
 
 st.title('International Football matches')
@@ -214,3 +223,144 @@ comparison_t = comparison[comparison['tournament']==tour]
 per = len(comparison_t)/len(comparison)
  
 st.write(f"{round(per*100,2)}% of matches between the 2 teams have been played as {tour} matches")
+
+
+
+
+
+
+
+
+sagemaker_checkbox = st.checkbox("check to use ML")
+#sagemaker_session = sagemaker.Session()
+
+
+# Get a SageMaker-compatible role used by this Notebook Instance.
+role = 'arn:aws:iam::321439037324:role/service-role/AmazonSageMaker-ExecutionRole-20220325T184245'
+#role = sagemaker.get_execution_role()
+#prefix = "Scikit-iris"
+
+
+if sagemaker_checkbox:
+    st.text("pressed")
+else:
+    st.text("not pressed")
+
+os.makedirs("./data", exist_ok=True)
+
+
+#connection = sqlite3.connect('data/database.sqlite')
+
+
+soccer_data = pd.read_csv('players_20.csv')
+soccer_data = soccer_data.fillna(soccer_data.mean())
+train_input = pd.read_csv('players_20.csv')
+
+st.table(soccer_data.head())
+
+EPL_list = ['Arsenal', 'Aston Villa', 'Bournemouth', 'Brighton & Hove Albion', 
+            'Burnley', 'Chelsea', 'Crystal Palace','Everton', 'Leicester City', 
+            'Liverpool', 'Manchester City', 'Manchester United', 'Newcastle United', 
+            'Norwich City', 'Sheffield United', 'Southampton', 'Tottenham Hotspur', 
+            'Watford', 'West Ham United', 'Wolverhampton Wanderers']
+
+soccer_data['new'] = soccer_data['club'].apply(lambda x: 1 if x in EPL_list else 0)
+EPL_data = soccer_data[soccer_data['new'] == 1]
+
+EPL_data = EPL_data.dropna(axis='columns') # remove NA's
+EPL_data = EPL_data[EPL_data['player_positions'] != 'GK'] # remove Goalkeepers
+EPL_data = EPL_data.loc[:,~EPL_data.columns.str.contains('^goalkeeping', case=False)] # remove Goalkeepers skills 
+EPL_data = EPL_data._get_numeric_data() # remove non-numerical data
+EPL_data= EPL_data.drop(columns=['sofifa_id', 'new', 'value_eur', 'team_jersey_number','contract_valid_until', 'overall', 'potential'])
+
+train_input = EPL_data
+st.write("train_input file:")
+st.table(train_input.head())
+
+labels = np.log(EPL_data['wage_eur'])
+st.write("labelzzzz")
+st.table(labels.head())
+features= EPL_data.drop('wage_eur', axis = 1)
+st.write("featurezzzzz")
+st.table(features.head())
+feature_list = list(features.columns)
+features = np.array(features)
+
+
+train_features, test_features, train_labels, test_labels = train_test_split(features, labels, test_size = 0.25, random_state = 42)
+#pd.DataFrame(train_features).to_csv("data/train_features.csv")
+#pd.DataFrame(train_labels).to_csv("data/train_labels.csv")
+#pd.DataFrame(test_features).to_csv("data/test_features.csv")
+#pd.DataFrame(test_labels).to_csv("data/test_labels.csv")
+
+
+from sklearn.ensemble import RandomForestRegressor
+clf = RandomForestRegressor(n_estimators = 1000, random_state = 0)
+clf.fit(train_features, train_labels)
+
+y_pred = clf.predict(test_features)
+errors = abs(y_pred - test_labels)
+# Print out the mean absolute error (mae)
+st.write('Mean Absolute Error:', round(np.mean(errors), 2), 'degrees.')
+fig_salaries = plt.plot(y_pred, test_labels, 'o', color='black')
+
+fig_salaries = px.scatter(x= y_pred, y = test_labels)
+st.plotly_chart(fig_salaries)
+
+
+
+
+
+
+
+######################################## SAGEMAKER STARTS HERE ########################################################
+
+if not sagemaker_checkbox:
+    st.stop()
+
+
+sagemaker_session = sagemaker.Session(boto3.session.Session())
+bucket = "football-analytics-bucket-sagemaker"
+
+
+train_df, test_df = train_test_split(train_input, test_size = 0.25, random_state = 42)
+pd.DataFrame(train_df).to_csv("data/train.csv")
+#pd.DataFrame(test_df).to_csv("data/validation.csv")
+
+
+FRAMEWORK_VERSION = "0.23-1"
+script_path = "soccer_entry_point.py"
+
+WORK_DIRECTORY = "data/train.csv"
+
+train_input = sagemaker_session.upload_data(
+    WORK_DIRECTORY, key_prefix="{}/{}".format("train2", WORK_DIRECTORY)
+)
+
+print(train_input)
+
+sklearn = SKLearn(
+    entry_point=script_path,
+    framework_version=FRAMEWORK_VERSION,
+    instance_type="ml.m5.xlarge",
+    role=role,
+    sagemaker_session=sagemaker_session,
+)
+sklearn.fit({"train": train_input})
+
+predictor = sklearn.deploy(initial_instance_count=1, instance_type="ml.m5.xlarge")
+
+
+
+y_pred = clf.predict(test_features)
+errors = abs(y_pred - test_labels)
+# Print out the mean absolute error (mae)
+st.write('Mean Absolute Error:', round(np.mean(errors), 2), 'degrees.')
+fig_salaries = plt.plot(y_pred, test_labels, 'o', color='black')
+
+fig_salaries = px.scatter(x= y_pred, y = test_labels)
+st.plotly_chart(fig_salaries)
+
+
+
+predictor.delete_endpoint()

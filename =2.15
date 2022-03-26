@@ -1,0 +1,39 @@
+Collecting sagemaker
+  Using cached sagemaker-2.80.0-py2.py3-none-any.whl
+Requirement already satisfied: attrs==20.3.0 in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages (from sagemaker) (20.3.0)
+Collecting smdebug-rulesconfig==1.0.1
+  Using cached smdebug_rulesconfig-1.0.1-py2.py3-none-any.whl (20 kB)
+Collecting boto3>=1.20.21
+  Using cached boto3-1.21.26-py3-none-any.whl (132 kB)
+Collecting pathos
+  Using cached pathos-0.2.8-py2.py3-none-any.whl (81 kB)
+Requirement already satisfied: importlib-metadata>=1.4.0 in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages (from sagemaker) (4.11.3)
+Requirement already satisfied: google-pasta in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages (from sagemaker) (0.2.0)
+Requirement already satisfied: protobuf>=3.1 in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages (from sagemaker) (3.14.0)
+Requirement already satisfied: numpy>=1.9.0 in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages (from sagemaker) (1.18.5)
+Requirement already satisfied: pandas in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages (from sagemaker) (1.1.4)
+Requirement already satisfied: packaging>=20.0 in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages (from sagemaker) (20.9)
+Collecting protobuf3-to-dict>=0.1.5
+  Using cached protobuf3_to_dict-0.1.5-py3-none-any.whl
+Collecting botocore<1.25.0,>=1.24.26
+  Using cached botocore-1.24.26-py3-none-any.whl (8.6 MB)
+Requirement already satisfied: jmespath<2.0.0,>=0.7.1 in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages (from boto3>=1.20.21->sagemaker) (0.10.0)
+Collecting s3transfer<0.6.0,>=0.5.0
+  Using cached s3transfer-0.5.2-py3-none-any.whl (79 kB)
+Requirement already satisfied: urllib3<1.27,>=1.25.4 in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages (from botocore<1.25.0,>=1.24.26->boto3>=1.20.21->sagemaker) (1.26.3)
+Requirement already satisfied: python-dateutil<3.0.0,>=2.1 in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages (from botocore<1.25.0,>=1.24.26->boto3>=1.20.21->sagemaker) (2.8.1)
+Requirement already satisfied: zipp>=0.5 in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages (from importlib-metadata>=1.4.0->sagemaker) (3.7.0)
+Requirement already satisfied: pyparsing>=2.0.2 in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages (from packaging>=20.0->sagemaker) (2.4.7)
+Requirement already satisfied: six>=1.9 in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages (from protobuf>=3.1->sagemaker) (1.15.0)
+Requirement already satisfied: pytz>=2017.2 in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages (from pandas->sagemaker) (2021.1)
+Collecting ppft>=1.6.6.4
+  Using cached ppft-1.6.6.4-py3-none-any.whl (65 kB)
+Collecting multiprocess>=0.70.12
+  Using cached multiprocess-0.70.12.2-py38-none-any.whl (128 kB)
+Requirement already satisfied: dill>=0.3.4 in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages (from pathos->sagemaker) (0.3.4)
+Collecting pox>=0.3.0
+  Using cached pox-0.3.0-py2.py3-none-any.whl (30 kB)
+Installing collected packages: botocore, s3transfer, ppft, pox, multiprocess, smdebug-rulesconfig, protobuf3-to-dict, pathos, boto3, sagemaker
+  Attempting uninstall: botocore
+    Found existing installation: botocore 1.20.106
+    Uninstalling botocore-1.20.106:

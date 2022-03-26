@@ -9,6 +9,12 @@ files:
     destination: home/ec2-user/football-analytics-app/assets/
   - source: /requirements.txt
     destination: home/ec2-user/football-analytics-app/
+  - source: /data
+    destination: home/ec2-user/football-analytics-app/data/
+  - source: /players_20.csv
+    destination: home/ec2-user/football-analytics-app/
+  - source: /soccer_entry_point.csv
+    destination: home/ec2-user/football-analytics-app/
 hooks:
   BeforeInstall:
     - location: scripts/install_dependencies

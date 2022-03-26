@@ -236,7 +236,8 @@ sagemaker_session = sagemaker.Session()
 
 
 # Get a SageMaker-compatible role used by this Notebook Instance.
-role = 'arn:aws:iam::321439037324:role/service-role/AmazonSageMaker-ExecutionRole-20220325T184245'
+#role = 'arn:aws:iam::321439037324:role/service-role/AmazonSageMaker-ExecutionRole-20220325T184245'
+role = 'arn:aws:iam::321439037324:role/AmazonEC2RoleForAWSCodeDeploy'
 #prefix = "Scikit-iris"
 
 

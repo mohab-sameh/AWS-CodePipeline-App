@@ -10,3 +10,4 @@ python3 -m pip install numpy
 python3 -m pip install s3fs
 python3 -m pip install sagemaker
 python3 -m pip install -U scikit-learn
+phthon3 -m pip install boto3

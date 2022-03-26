@@ -15,6 +15,8 @@ from sagemaker.sklearn.estimator import SKLearn
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 import sklearn.metrics
+import boto3
+
 
 st.title('International Football matches')
 
@@ -316,7 +318,7 @@ if not sagemaker_checkbox:
     st.stop()
 
 
-sess = sagemaker.Session()
+sess = sagemaker.Session(boto3.session.Session())
 bucket = "football-analytics-bucket-sagemaker"
 
 

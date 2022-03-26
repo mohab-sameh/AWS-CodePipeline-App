@@ -232,12 +232,12 @@ st.write(f"{round(per*100,2)}% of matches between the 2 teams have been played a
 
 
 sagemaker_checkbox = st.checkbox("check to use ML")
-sagemaker_session = sagemaker.Session()
+#sagemaker_session = sagemaker.Session()
 
 
 # Get a SageMaker-compatible role used by this Notebook Instance.
-#role = 'arn:aws:iam::321439037324:role/service-role/AmazonSageMaker-ExecutionRole-20220325T184245'
-role = sagemaker.get_execution_role()
+role = 'arn:aws:iam::321439037324:role/service-role/AmazonSageMaker-ExecutionRole-20220325T184245'
+#role = sagemaker.get_execution_role()
 #prefix = "Scikit-iris"
 
 
@@ -319,7 +319,7 @@ if not sagemaker_checkbox:
     st.stop()
 
 
-sess = sagemaker.Session(boto3.session.Session())
+sagemaker_session = sagemaker.Session(boto3.session.Session())
 bucket = "football-analytics-bucket-sagemaker"
 
 

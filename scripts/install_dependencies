@@ -15,4 +15,4 @@ sudo aws configure
 echo "$AWS_ACCESS_KEY_ID"
 echo -ne '\n' | "$AWS_SECRET_ACCESS_KEY"
 echo -ne '\n' | "eu-central-1"
-echo -ne '\n' | ""
+echo -ne '\n'

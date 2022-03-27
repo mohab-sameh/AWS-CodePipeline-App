@@ -12,7 +12,7 @@ python3 -m pip install sagemaker
 python3 -m pip install -U scikit-learn
 python3 -m pip install boto3
 sudo aws configure
-echo -ne '\n' | "$AWS_ACCESS_KEY_ID"
+echo "$AWS_ACCESS_KEY_ID"
 echo -ne '\n' | "$AWS_SECRET_ACCESS_KEY"
 echo -ne '\n' | "eu-central-1"
 echo -ne '\n' | ""

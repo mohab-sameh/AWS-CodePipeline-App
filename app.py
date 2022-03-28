@@ -18,7 +18,7 @@ import sklearn.metrics
 import boto3
 
 
-st.title('Football Analytics App 2')
+st.title('Football Analytics App')
 
 
 class DBConnection:
